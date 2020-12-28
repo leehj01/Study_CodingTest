@@ -19,7 +19,7 @@
 
 # +
 import time
-start_time = time.time() # 측정시작
+start_time = time.time() # 측정시작.
 
 # 프로그램 소스코드
 end_time = time.time() # 측정 종료.
