@@ -170,5 +170,140 @@ import sys
 data = sys.stdin.readline().rstrip()
 print(data)
 # -
+# ## 2-3 조건문
 
 
+score = 95
+result = "Success" if score >= 90 else "Fail"
+print(result) 
+
+# ## 2-4 반복문
+
+# +
+# 1부터 9까지의 홀수의 합을 구할 때 
+
+result = 0
+
+for i in range(1,10):
+    if i % 2 == 0: 
+        continue  # 짝수이면 건너뛰고 홀수여야 result에 더해짐
+    
+    result += i
+
+print(result)  # 25
+
+# +
+# 합격여부 판단하는데, 특정번호의 학생은 제외하기
+score = [90, 85, 77, 65, 97 ]
+pass_student = {2,4}
+
+for i in range(5):
+	if i + 1 in pass_student:
+		continue
+	if score[i] >= 80 :
+		print(i + 1, "번 학생은 합격입니다" )
+# -
+
+for i in range(2,10):
+    for j in range(1, 10):
+        print(i, "x", j, "=", i*j)
+    print()
+
+# ## 함수와 람다표현식
+
+# def 함수명(매개변수):
+# 	실행할 소스코드
+# 	return 반환 값
+
+# +
+a = 0
+
+def func():
+	global a
+	a += 1 
+
+for i in range(10):
+	func()
+
+print(a)
+
+# +
+a = 0
+
+def func():
+	global a
+	a += 1 
+
+for i in range(10):
+	func()
+
+print(a)
+
+# +
+array  = [ ('홍길동',50), ( '이순신',32), ('아무개', 74) ] 
+
+print(sorted( array, key= lambda x: x[1]  ) )
+
+# +
+list1 = [ 1, 2,3,4,5 ]
+list2 = [ 6, 7, 8, 9, 10]
+
+result = map(lambda a, b : a+ b , list1, list2 )
+print(list (result)) # [ 7, 9 , 11, 13 , 15 ]
+# -
+
+# ## 2-6. 실전에서 유용한 표준라이브러리
+
+result = eval("(3+5)*7")
+print(result)  # 56
+
+# +
+from itertools import permutations
+
+data = ['A' , 'B', 'C' ]
+result = list(permutations( data, 3)) # 3개를 골라 모든 순열 구하기
+print(result)
+
+# +
+from itertools import combinations
+
+data = ['A' , 'B', 'C' ]
+result = list(combinations( data, 2 ) )  # 2개를 골라 모든 순열 구하기
+print(result)
+
+# +
+from itertools import product
+
+data = ['A' , 'B', 'C' ]
+result = list(product( data, repeat = 2)) # 2개를 뽑아 모든 순열 구하기 ( 중복 허용 )
+print(result)
+
+# +
+from itertools import combinations_with_replacement
+
+data = ['A' , 'B', 'C' ]
+result = list(combinations_with_replacement( data, 2) )
+ # 2개를 뽑아 모든 조합 구하기 ( 중복 허용 )
+print(result)
+
+# +
+from collections import Counter
+
+counter = Counter(['red','blue','red','green','blue','blue'] )
+
+print(counter['blue']) # blue가 등장한 횟수 출력 # 3
+print(dict(counter)) # 사전 자료형으로 반환 # {'red' : 2, 'blue' : 3, 'green' :1 }
+
+# +
+# 최대공약수 gcd()
+import math
+
+# 최소공배수 (lcm)을 구하는 함수
+def lcm(a, b):
+    return a*b // math.gcd(a,b)
+
+a= 21
+b=14
+
+print(math.gcd(21,14)) # 최대공약수 계산 7
+print(lcm (21,14)) # 최소공배수 계산  
