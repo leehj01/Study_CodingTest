@@ -14,32 +14,118 @@
 #     name: python3
 # ---
 
+# # 2. 구현 : 시뮬레이션과 완전탐색
+# - 일반적으로 알고리즘 문제서의 2차원 공간은 행렬(Matrix)의 의미로 사용됨
+
+for i in range(5):
+    for j in range(5):
+        print('(',1, ',' ,j,')', end = ' ' )
+    print()
+
+# - 시뮬레이션 및 완전탐색 문제에서는 2차원 공간에서의 방향 벡터가 자주 활용됨
+
 # +
-# N 입력받기
-n = int(input())
-x, y = 1, 1
+# 동 북 서 남  x는 행을 의미 , y 는 열을 의미 
+dx = [0 , -1, 0 , 1]
+dy = [ 1, 0, -1, 0 ]
+
+# 현재 위치 
+x, y = 2,2 
+
+for i in range(4):
+    # 다음 위치
+    nx = x + dx[i]
+    ny = y + dy[i]
+    print(nx, ny)
+# -
+
+# ## 2.0.1 상하좌우 문제
+# : A는 N X N 크기의 정사각형 공간 위에 있다. 이 공간은 1X1크기의 정사각형으로 나누어져 있다. 가장 왼쪽 좌표는 ( 1,1 ) 이며, 가장 오른쪽 좌표는 (N ,N )이다. A는 상하좌우 방향으로 이동할 수 있으며, 시작좌표는 항상 (1, 1)이다. 
+#
+# : A가 이동할 계획서에는 L, R, U , D중 하나의 문자가 반복적으로 적혀 있다. 
+#
+# L : 왼쪽 한칸,  R : 오른쪽한칸 , U : 위로 한칸, D: 아래로 한칸 
+#
+# :  N X N 크기의 정사각형 공간을 벗어나는 움직이는 무시됨 
+#
+# : 공간의 크기 = 5 , 입력 : 5   RRRUDD
+#
+# 출력 : 3 4 
+
+# +
+# 내가 푼 문제 
+N = int(input())
+move = input()
+print(move)
+x , y = 1,1 
+    
+for j in move:
+    
+    if j == 'R':
+        if y < N:
+            x += 0
+            y += 1  
+        
+    elif j == 'L':
+        if y > 1 :
+            x += 0
+            y += -1
+            
+    elif j == 'U':
+        if x > 1 :
+            x += -1
+            y += 0
+    elif j == 'D':
+        if x < N :
+            x += 1
+            y += 0
+    
+print(x, y)
+        
+
+# +
+# 동빈나샘 구현 코드
+
+# N 입력 받기
+n  = int(input())
+x, y = 1,1 
 plans = input().split()
 
-# L, R, U, D에 따른 이동 방향
+# L , R, U, D에 따른 이동방향
 dx = [0, 0, -1, 1]
 dy = [-1, 1, 0, 0]
-move_types = ['L', 'R', 'U', 'D']
+move_types = ['L','R','U','D']
 
 # 이동 계획을 하나씩 확인
 for plan in plans:
-    # 이동 후 좌표 구하기
+    # 이동후 좌표 구하기
     for i in range(len(move_types)):
         if plan == move_types[i]:
             nx = x + dx[i]
             ny = y + dy[i]
-    # 공간을 벗어나는 경우 무시
-    if nx < 1 or ny < 1 or nx > n or ny > n:
-        continue
-    # 이동 수행
-    x, y = nx, ny
-
+            print(nx, ny)
+            
+        # 공간을 벗어나는 경우 무시
+        if nx < 1 or ny < 1 or nx > n or ny  >n :
+            continue
+            
+        x, y = nx, ny
 print(x, y)
 # -
+
+# ## 2.0.2. 시각 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
