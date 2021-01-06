@@ -348,10 +348,12 @@ def bfs(x , y):
     # 큐 구현을 위해 deque 라이브러리 사용
     queue = deque()
     queue.append((x,y))
+    print(queue)
     
     # 큐가 빌 때까지 반복하기
     while queue :
         x, y  = queue.popleft()
+        print( x, y)
         
         # 현재 위치에서 4가지 방향으로의 위치 찾기
         for i in range(4):
@@ -392,3 +394,6 @@ dy = [0, 0, -1, 1]
 
 # bfs를 수행한 결과 출력
 print(bfs(0,0))
+# -
+
+
