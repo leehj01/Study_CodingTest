@@ -140,3 +140,18 @@ print(count_by_range(a ,4, 4))
 
 # 값이 [ -1, 3] 범위에 있는 데이터 개수 출력
 print(count_by_range(a , -1 , 3))
+# -
+
+# ## 빠르게 입력받기
+
+# +
+import sys
+
+# 하나의 문자열 데이터 입력받기
+input_data = sys.stdin.readline().rstrip()
+
+# 입력받은 문자열 그래로 출력
+print(input_data)
+# -
+
+
