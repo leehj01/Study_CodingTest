@@ -165,7 +165,7 @@ class Node:
         
 # 전위 순회(Preorder Traversal)
 def pre_order(node):
-    print(node.data, end= '')
+    print(node.data, end= ' ')
     if node.left_node != None:
         pre_order(tree[node.left_node])
     if node.right_node != None:
@@ -175,7 +175,7 @@ def pre_order(node):
 def in_order(node):
     if node.left_node != None:
         in_order(tree[node.left_node])
-        
+    print(node.data, end = ' ')
     if node.right_node != None:
         in_order(tree[node.right_node])
         
