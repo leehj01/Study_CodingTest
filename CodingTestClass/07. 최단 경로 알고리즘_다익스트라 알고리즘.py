@@ -72,6 +72,32 @@ for i in range(1, n + 1):
         print(distance[i])
 
 #%%
+# 힙 알고리즘
+import sys
+import heapq
+input = sys.stdin.readline
+
+def heapsort(iterable):  # 기본적으로 minheap 형태임
+    h = []
+    result = []
+    # 모든 원소를 차례대로 힙에 삽입
+    for value in interable:
+        heapq.heappush(h, value)
+    # 힙에 삽입된 모든 원소를 차례대로 꺼내어 담기
+    for i in range(len(h)):
+        result.append(heapq.heappop(h))
+    return result
+
+n = int(input())
+arr = []
+
+for i in range(n):
+    arr.append(int(input()))
+
+res = heapsort(arr)
+
+for i in range(n):
+    print(res[i])
 
 ## 최단거리 자료구조 : 힙 라이브러리 - 최소 힙 ( 오른차순 정렬 )
 
