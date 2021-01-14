@@ -204,6 +204,3 @@ print()
 in_order(tree['A'])
 print()
 post_order(tree['A'])
-# -
-
-
