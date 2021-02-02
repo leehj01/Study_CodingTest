@@ -48,3 +48,40 @@ def solution(answers):
 answers = [1,3,2,4,2]
 # answers = [1,2,3,4,5]
 solution(answers)
+
+# +
+## 같이 공부하면 좋을 것 같은 코드 1.
+from itertools import cycle
+
+def solution(answers):   # 나는 해결방법을 못찾아서 곱해줬는데, 이분은 cycle사용 
+    giveups = [
+        cycle([1,2,3,4,5]),
+        cycle([2,1,2,3,2,4,2,5]),
+        cycle([3,3,1,1,2,2,4,4,5,5]),
+    ]
+    scores = [0, 0, 0]
+    
+    for num in answers:
+        for i in range(3):
+            if next(giveups[i]) == num:  # next를 사용해서, giveup[i]의 값들을 비교 
+                scores[i] += 1
+    highest = max(scores)
+
+    return [i + 1 for i, v in enumerate(scores) if v == highest]
+
+
+# +
+## 같이 공부하면 좋을 것 같은 코드 2.
+
+def solution(answers):
+    p = [[1, 2, 3, 4, 5],
+         [2, 1, 2, 3, 2, 4, 2, 5],
+         [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]]
+    s = [0] * len(p)
+
+    for q, a in enumerate(answers):
+        for i, v in enumerate(p):
+            if a == v[q % len(v)]: # 나누기 처리를 통해서, 10000 문제까지도 커버가능...( 놀랍다.. ) 
+                s[i] += 1
+    return [i + 1 for i, v in enumerate(s) if v == max(s)]
+© 2021 GitHub, Inc.
