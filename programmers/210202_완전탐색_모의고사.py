@@ -84,4 +84,4 @@ def solution(answers):
             if a == v[q % len(v)]: # 나누기 처리를 통해서, 10000 문제까지도 커버가능...( 놀랍다.. ) 
                 s[i] += 1
     return [i + 1 for i, v in enumerate(s) if v == max(s)]
-© 2021 GitHub, Inc.
+
