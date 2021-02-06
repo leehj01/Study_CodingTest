@@ -43,69 +43,34 @@
 # ※ 공지 - 2019년 2월 18일 지문이 리뉴얼되었습니다.
 # ※ 공지 - 2019년 2월 27일, 28일 테스트케이스가 추가되었습니다.
 
-# +
-n = 5
-lost = [1,2,3,4]
-reserve = [1,3,4,5]
-
-n_ = [i for i in range(1, n+1) ]
-result = list(set(n_) - set(lost)) 
-print('초기 result : ' , result)
-
-for i in reserve:
-    if i  not in lost    : 
-        if i + 1 in lost :
-            result.append(i+1)
-            lost.remove(i + 1)
-        elif i - 1 in lost :
-            result.append(i - 1)
-            lost.remove(i - 1)
-            
-    elif i in lost:
-        result.append(i)
-        reserve.remove(i)
+def solution(n, lost, reserve):
+    student = [i for i in range(1, n+1) ]  # 전체 학생의 리스트 
+    use = list(set(student) - set(lost))  # 전체 학생에서 잃어버린 학생 빼기. 
     
-print(len(set(result)))
-print(set(result))
-print(result)
-
-# +
-n = 5
-lost = [1,2,3,4]
-reserve = [1,3,4,5]
-
-
-n_ = [i for i in range(1, n+1) ]
-result = list(set(n_) - set(lost))
-print('초기 result : ' , result)
-
-for i in reserve:
-    if i in lost:
-        result.append(i)
-        reserve.remove(i)
-        print('두번째 reuslt : ', result )
-        
-    elif i  not in lost    : 
-        if i + 1 in lost :
-            result.append(i+1)
-            lost.remove(i + 1)
-        elif i - 1 in lost :
+    # 여분의 옷을 가져온 애들이 도난 당하면, 자기 자신의 옷을 입기 -> reserve, lost 리셋하기
+    result = use + [ i for i in list(set(lost) & set(reserve))]
+    reserve_lost = list(set(lost) & set(reserve))
+    reserve = [i for i in reserve if i not in set([ i for i in reserve_lost])]
+    lost = [j for j in lost if j not in set([ i for i in reserve_lost])]
+    
+    for i in reserve: # 오른쪽 왼쪽 비교 .
+        if  (i - 1 in lost) & ( i > 1) : # 1번 부터 생각해야 오류가 안남
             result.append(i - 1)
             lost.remove(i - 1)
-            
-            
-print(len(set(result)))
-print(set(result))
-print(result)  
+
+        elif (i + 1 in lost) & ( i < n) :
+            result.append(i+1)
+            lost.remove(i + 1)
+                
+    return len(set(result))
+
+
+# +
+n = 8 # 전체 학생 
+lost = [1,3,6,8]
+reserve = [2,4,7]
+
+solution(n, lost, reserve)
 # -
-
-list(set(n_) ^ set(lost))
-
-1 in lost
-
-reserve
-
-reserve.remove(3)
-reserve
 
 
