@@ -43,6 +43,7 @@
 # ※ 공지 - 2019년 2월 18일 지문이 리뉴얼되었습니다.
 # ※ 공지 - 2019년 2월 27일, 28일 테스트케이스가 추가되었습니다.
 
+# 내 코드
 def solution(n, lost, reserve):
     student = [i for i in range(1, n+1) ]  # 전체 학생의 리스트 
     use = list(set(student) - set(lost))  # 전체 학생에서 잃어버린 학생 빼기. 
@@ -65,19 +66,27 @@ def solution(n, lost, reserve):
     return len(set(result))
 
 
-# +
-n = 8 # 전체 학생 
-lost = [1,3,6,8]
-reserve = [2,4,7]
+# 내 코드2
+def solution(n, lost, reserve):
+    reserve_lost = list(set(lost) & set(reserve))
+    reserve = [i for i in reserve if i not in set([ i for i in reserve_lost])]
+    lost = [j for j in lost if j not in set([ i for i in reserve_lost])]
+    
+    for i in reserve:
+        if  (i - 1 in lost) & ( i > 1) :
+            lost.remove(i - 1)
 
-solution(n, lost, reserve)
+        elif (i + 1 in lost) & ( i < n) :
+            lost.remove(i + 1)
+                
+    return n - len(lost)
 
 
 # +
 # 같이 보면 좋을 코드
 
 def solution(n, lost, reserve):
-    _reserve = [r for r in reserve if r not in lost]
+    _reserve = [r for r in reserve if r not in lost] # 시간복잡도이유로 list(set(reserve) - set(lost)) 이렇게 푸는게 더 낫다고 함
     _lost = [l for l in lost if l not in reserve]
     for r in _reserve:
         f = r - 1
@@ -87,6 +96,12 @@ def solution(n, lost, reserve):
         elif b in _lost:
             _lost.remove(b)
     return n - len(_lost)  # 나는 체육복입을 학생의 수를 생각했으나, 여긴그냥 n에서 lost를 뻄
+# +
+n = 8 # 전체 학생 
+lost = [1,3,6,8]
+reserve = [2,4,7]
+
+solution(n, lost, reserve)
 # -
 
 
