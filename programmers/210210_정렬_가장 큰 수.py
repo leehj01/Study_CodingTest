@@ -35,7 +35,6 @@ return : 99510010000
 numbers : [0, 0, 0, 0, 0]
 return : 0
 
-도움이 되셨으면 좋겠네요 ^
 # -
 
 numbers = [1000, 0, 5, 99, 100]
@@ -65,25 +64,95 @@ def solution(numbers):
 #     answer = ''.join(numbers)
     return numbers
 
-solution(numbers)
-
-# +
 numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34]
 numbers = list(map(str, numbers))
+numbers[0].sort()
 
-a = []
-for i in range(1, len(numbers)):
-    for j in range(i, 0 , -1):
-        if numbers[j][0] == numbers[j-1][0]:
-#             numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
-            a.append([j])
+# +
+array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
 
-print(numbers)
+def quick_sort(array, start, end):
+    if start > end : # 원소가 1개인 경우 종료
+        return
+    
+    pivot = start # 피벗은 첫번째 원소
+    left = start + 1
+    right = end
+    while left <= right :
+        # 피벗보다 큰 데이터를 찾을 때까지 반복
+        while left <= end and array[left] <= array[pivot]:
+            left += 1 
+            
+        # 피벗보다 작은 데이터를 찾을 때까지 반복
+        while right > start and array[right] >= array[pivot]:
+            right -= 1
+            
+        if left > right : # 엇갈렸다면 작은 right -=1 데이터와 피벗을 교채
+            array[right], array[pivot] = array[pivot], array[right]
+            
+        else : # 엇갈리지 않았다면 작은 데이터와 큰데이터 교체
+            array[left], array[right] = array[right] , array[left]
+            
+    # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행
+    quick_sort(array, start, right -1 )
+    quick_sort(array, right +1 , end )
+    
+            
+quick_sort(array, 0, len(array) -1 )
+print(array)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 # -
 
-a
+numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
+# numbers.sort(reverse = True)
 
-numbers = [ i for i in numbers[::-1]]
-numbers
+# +
+numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
+
+
+quick_sort(numbers, 0, len(numbers) -1 )
+print(numbers)
+
+# +
+numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
+numbers = list(map(str, numbers))
+
+for i in range(1, len(numbers)):
+    for j in range(i, 0 , -1):
+        
+
+# +
+numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
+numbers = list(map(str, numbers))
+
+for i in range(1, len(numbers)):
+    for j in range(i, 0 , -1):
+        if numbers[j][0] < numbers[j-1][0]:
+            numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
+            
+        elif len(numbers[j]) >= 2 :
+            if numbers[j][1] < numbers[j-1][1]:
+                numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
+            
+            
+        else:
+            print(numbers)
+
+# +
+numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
+numbers = list(map(str, numbers))
+
+for i in range(1, len(numbers)):
+    for j in range(1, i):
+        if numbers[j][0] < numbers[j-1][0]:
+            numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
+            
+        elif len(numbers[j]) >= 2 :
+            if numbers[j][1] < numbers[j-1][1]:
+                numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
+            
+            
+        else:
+            print(numbers)
+# -
 
 
