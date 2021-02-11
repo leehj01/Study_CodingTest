@@ -61,7 +61,7 @@ def solution(numbers):
                 numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
                 
     numbers = [ i for i in numbers[::-1]]
-#     answer = ''.join(numbers)
+    answer = ''.join(numbers)
     return numbers
 
 numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34]
@@ -114,10 +114,9 @@ print(numbers)
 
 # +
 numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
-numbers = list(map(str, numbers))
+list(map(lambda x : sorted(str(x)[0]), numbers))
 
-for i in range(1, len(numbers)):
-    for j in range(i, 0 , -1):
+numbers
         
 
 # +
