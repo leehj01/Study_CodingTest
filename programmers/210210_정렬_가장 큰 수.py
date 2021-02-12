@@ -26,20 +26,6 @@
 # 정답이 너무 클 수 있으니 문자열로 바꾸어 return 합니다.
 
 # +
-numbers : [0, 5, 10, 15, 20]
-return : 52015100
-
-numbers : [1000, 0, 5, 99, 100]
-return : 99510010000
-
-numbers : [0, 0, 0, 0, 0]
-return : 0
-
-# -
-
-numbers = [1000, 0, 5, 99, 100]
-
-
 def solution(numbers):
     numbers = list(map(str, numbers))
 
@@ -62,96 +48,47 @@ def solution(numbers):
                 
     numbers = [ i for i in numbers[::-1]]
     answer = ''.join(numbers)
-    return numbers
+    return answer
 
-numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34]
-numbers = list(map(str, numbers))
-numbers[0].sort()
+numbers =  [3, 30, 34, 5, 9]
+solution(numbers)
+
 
 # +
-array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
+# 풀었으나 내것이 아닌 코드 .. 
+# 1. 아이디어 : 문자형 sort는 int형 sort와 다르게 작동한다.
+# 2. 아이디어 :  문자의 길이를 곱한다음 비교하면 더 간단하게 비교할 수 있다. 
 
-def quick_sort(array, start, end):
-    if start > end : # 원소가 1개인 경우 종료
-        return
-    
-    pivot = start # 피벗은 첫번째 원소
-    left = start + 1
-    right = end
-    while left <= right :
-        # 피벗보다 큰 데이터를 찾을 때까지 반복
-        while left <= end and array[left] <= array[pivot]:
-            left += 1 
-            
-        # 피벗보다 작은 데이터를 찾을 때까지 반복
-        while right > start and array[right] >= array[pivot]:
-            right -= 1
-            
-        if left > right : # 엇갈렸다면 작은 right -=1 데이터와 피벗을 교채
-            array[right], array[pivot] = array[pivot], array[right]
-            
-        else : # 엇갈리지 않았다면 작은 데이터와 큰데이터 교체
-            array[left], array[right] = array[right] , array[left]
-            
-    # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행
-    quick_sort(array, start, right -1 )
-    quick_sort(array, right +1 , end )
-    
-            
-quick_sort(array, 0, len(array) -1 )
-print(array)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-# -
+def solution(numbers):
+    numbers = list(map(str, numbers))
+    numbers.sort(key = lambda x : (x*4)[:4], reverse = True)
+    answer = ''.join(numbers)
+    answer = str(int(answer))
+    return answer
 
-numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
-# numbers.sort(reverse = True)
+numbers =  [3, 30, 34, 5, 9]
+solution(numbers)
 
 # +
-numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
+# 공부해볼 코드
+
+import functools  # from functools import cmp_to_key
+
+def comparator(a,b):
+    t1 = a+b
+    t2 = b+a
+    return (int(t1) > int(t2)) - (int(t1) < int(t2)) #  t1이 크다면 1  // t2가 크다면 -1  //  같으면 0
+
+def solution(numbers):
+    n = [str(x) for x in numbers]
+    n = sorted(n, key=functools.cmp_to_key(comparator), reverse=True)
+    answer = str(int(''.join(n)))
+    return answer
 
 
-quick_sort(numbers, 0, len(numbers) -1 )
-print(numbers)
 
-# +
-numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
-list(map(lambda x : sorted(str(x)[0]), numbers))
-
-numbers
-        
-
-# +
-numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
-numbers = list(map(str, numbers))
-
-for i in range(1, len(numbers)):
-    for j in range(i, 0 , -1):
-        if numbers[j][0] < numbers[j-1][0]:
-            numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
-            
-        elif len(numbers[j]) >= 2 :
-            if numbers[j][1] < numbers[j-1][1]:
-                numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
-            
-            
-        else:
-            print(numbers)
-
-# +
-numbers =  [3, 5, 8, 9, 300, 304, 33, 30, 34,333]
-numbers = list(map(str, numbers))
-
-for i in range(1, len(numbers)):
-    for j in range(1, i):
-        if numbers[j][0] < numbers[j-1][0]:
-            numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
-            
-        elif len(numbers[j]) >= 2 :
-            if numbers[j][1] < numbers[j-1][1]:
-                numbers[j] , numbers[j-1] = numbers[j-1] , numbers[j]
-            
-            
-        else:
-            print(numbers)
 # -
 
 
+numbers =  [3, 30, 34, 5, 9]
+solution(numbers)
