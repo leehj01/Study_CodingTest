@@ -28,7 +28,7 @@ result = list(permutations( numbers , 7))
 
 # -
 
-def search_prime(num):
+def search(num):
     num = int(num)
     for i in range(2, int(math.sqrt(num)) + 1) :
         if num % i == 0 :
@@ -38,12 +38,23 @@ def search_prime(num):
 
 numbers = '011'
 prime = []
-for i in range( 1, len(numbers )):
+print(len(numbers))
+for i in range( 1, len(numbers) + 1):
     perm = list(permutations( numbers , i ))
     for j in perm :
-        if search_prime(''.join(j)) == '소수':
+        if search(''.join(j)) == '소수':
             prime.append(''.join(j))
+print(prime)
 
-len(set(prime) - {'1', '0'})
+numbers = '011'
+prime = []
+for i in range( 1, len(numbers) + 1):
+    perm = list(permutations( numbers , i ))
+    prime.extend([''.join(j) for j in perm if search(''.join(j)) == '소수'])
+print(prime)
+
+[''.join(j) for i in perm if search(''.join(j)) == '소수']
+
+len(set(list ( map( int, prime )) ) - { 1 , 0} ) 
 
 
