@@ -111,24 +111,7 @@ def max_a(name):
 
 max_a(name)
 
-from collections import Counter
-
-Counter(name)
-
 m = [ min(ord(c) - 65, 91-ord(c)) for c in name ]
 m
-
-
-
-
-
-cnt += -(ord(max([max(i) for i in name if i > 'N' ])) - ord('Z') ) + 1
-cnt
-
-print([max(i) for i in name if i < 'N' ])
-ord(min([max(i) for i in name if i < 'N' ]) ) - ord('A')
-
-print([max(i) for i in name if i > 'N' ])
-print(max([max(i) for i in name if i > 'N' ]))
 
 
