@@ -24,8 +24,30 @@
 # 과학자가 발표한 논문의 수는 1편 이상 1,000편 이하입니다.
 # 논문별 인용 횟수는 0회 이상 10,000회 이하입니다.
 
+citations = [3, 0, 6 , 1, 5]
+
+
 def solution(citations):
     for h in range(len(citations), 0,-1) :
         if len([i for i in citations if i >= h ] ) >= h:
             return h
     return 0
+
+
+# +
+# 배우면 좋을 남코드  - map 을 이용 
+
+def solution(citations):
+    citations.sort(reverse=True)    # 큰수부터 
+    answer = max(map(min, enumerate(citations, start=1))) 
+    return answer
+
+
+# +
+# 위의 코드 설명 
+citations = [12,11,10,9,8,1]
+citations.sort(reverse=True)  
+for i , v in enumerate(citations, start=1):
+    print(i, v)
+    
+list(map(min, enumerate(citations, start=1)))
