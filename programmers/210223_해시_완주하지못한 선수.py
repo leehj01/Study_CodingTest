@@ -30,3 +30,20 @@ completion = ['stanko', 'ana','mislav']
 from collections import Counter
 def solution(participant, completion):
     return ''.join(list((Counter(participant) - Counter(completion)).keys()))
+
+
+# +
+# 배울만한 코드 : hash 사용  -> hash 값 충돌이 발생할 가능성이 있다. 
+
+def solution(participant, completion):
+    answer = ''
+    temp = 0
+    dic = {}
+    for part in participant:
+        dic[hash(part)] = part  # dic[] 안에 hash를 넣어주면, part에 해당하는 해쉬값이 주어짐. 
+        temp += int(hash(part))  # 그 값은 고유한 값이기 때문에, 가감을 해주면서 answer을 찾아줌 
+    for com in completion:
+        temp -= hash(com)
+    answer = dic[temp]
+
+    return answer
