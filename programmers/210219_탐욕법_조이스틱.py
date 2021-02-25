@@ -118,6 +118,3 @@ def solution(st):
     return res
 
 solution(name)
-# -
-
-
