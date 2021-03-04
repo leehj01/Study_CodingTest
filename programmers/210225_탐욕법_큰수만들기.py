@@ -59,14 +59,6 @@ def solution(number, k):
     return ''.join(num)
 
 
-number = '4177252841'
-k = 4
-solution(number, k)
-
-number = '99991'
-k = 3
-solution(number, k)
-
 # +
 number = '99991'
 k = 3
