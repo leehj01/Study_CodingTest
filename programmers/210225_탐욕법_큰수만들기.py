@@ -25,22 +25,7 @@
 # number는 1자리 이상, 1,000,000자리 이하인 숫자입니다.
 # k는 1 이상 number의 자릿수 미만인 자연수입니다.
 
-def solution(number, k):
-    num = [i for i in number]
-    idx = 0
-
-    for i in num.copy():
-        if i < max(num[idx:idx+k+1]):
-            k -= 1 
-            num.remove(i)
-        else : 
-            idx += 1
-            
-    if len(num) != len(num) - k :
-         return(''.join(num[:len(num) - k]))
-    else :
-         return ''.join(num)
-
+# ## 처음 했던 방법
 
 def solution(number, k):
     num = [i for i in number]
@@ -59,26 +44,41 @@ def solution(number, k):
     return ''.join(num)
 
 
+# ## 다시 시작
+
+def pop_now( num ):
+    now = 0
+    for i in range(len(num) -1 ):
+        if num[i] == '9':
+            break
+            
+        if num[i] < num[i+1]:
+            num.pop(now)
+            break
+        else :
+            now += 1 
+
+
 # +
-number = '99991'
+number = "99991"
+num = list(number)
 k = 3
-num = [i for i in number]
-num_copy = num.copy()
-idx = 0
+length = len(list(number)) - k
 
-if num[0] == '9':
-    print(''.join(num[:len(num) - k]))
+while True :
     
-
-for i in num_copy:
-    if i < max(num[idx:idx+k+1]):
-        k -= 1 
-        num.remove(i)
-    else : 
-        idx += 1
+    pop_now( num )
+    k -= 1
+    
+    if k == 0:
+        break
         
-if len(num) != len(num) - k :
-    print(num[0])
+if len(num) != length  :
+    num = num[:length]
+    
+print(''.join(num))
 # -
+
+num[:4]
 
 
