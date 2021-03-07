@@ -27,16 +27,18 @@
 # 각 전화번호의 길이는 1 이상 20 이하입니다.
 # 같은 전화번호가 중복해서 들어있지 않습니다.
 
-phone_book = ["119", "97674223", "1195524421"]
+phone_book.sort()
+
+phone_book
 
 phone_book = ["123","456","789"]
 
-'119' in '97674223'
+'119' in '976711194223'[:3]
 
 {'97674223'} - {'119'}
 
 
-# ### 2중 FOR 문으로 구현한 코드 : 정확성 테스트는 100점이나 효율성에서 0점 맞음...^^
+# ### 첫번째 시도 : 2중 FOR 문으로 구현한 코드 : 정확성 테스트는 100점이나 효율성에서 0점 맞음...^^
 
 def solution(phone_book):
     answer = 2
@@ -51,8 +53,30 @@ def solution(phone_book):
     return answer
 
 
-'97674223'[:len('119')]
+# ### 두번째 시도 : combinations으로 구현한 코드 : 정확성 테스트는 100점이나 효율성에서 0점 맞음...^^
 
-len('119')
+from itertools import combinations
+def solution(phone_book):
+    answer = 2
+    for i in list(combinations(phone_book, 2)):
+        if i[0][:len(min(i))] == i[1][:len(min(i))]:
+            answer = False
+
+    if answer != False:
+        answer = True
+
+    return answer
 
 
+# ### 세번째 시도 : one for문 - 성공
+
+def solution(phone_book):
+    answer = 2
+    phone_book.sort()  # 문자열이라서 순서대로 앞글자 순서대로 비교를 위해 sort 해줌 ( 예전 문자열 정렬에 배운 지식 )
+    for i in range(len(phone_book)-1 ):
+        if phone_book[i] == phone_book[i+1][:len(phone_book[i])]:
+            answer = False
+
+    if answer != False:
+            answer = True
+    return answer
