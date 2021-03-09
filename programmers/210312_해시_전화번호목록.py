@@ -41,42 +41,40 @@ phone_book = ["123","456","789"]
 # ### 첫번째 시도 : 2중 FOR 문으로 구현한 코드 : 정확성 테스트는 100점이나 효율성에서 0점 맞음...^^
 
 def solution(phone_book):
-    answer = 2
     for i in phone_book :
         for j in phone_book:
             if i == j[:len(i)] and i != j:
-                answer = False
-
-    if answer != False:
-        answer = True
-
-    return answer
+            return False
+    return True
 
 
 # ### 두번째 시도 : combinations으로 구현한 코드 : 정확성 테스트는 100점이나 효율성에서 0점 맞음...^^
 
 from itertools import combinations
 def solution(phone_book):
-    answer = 2
     for i in list(combinations(phone_book, 2)):
         if i[0][:len(min(i))] == i[1][:len(min(i))]:
-            answer = False
-
-    if answer != False:
-        answer = True
-
-    return answer
+            return False
+    return True
 
 
 # ### 세번째 시도 : one for문 - 성공
 
 def solution(phone_book):
-    answer = 2
     phone_book.sort()  # 문자열이라서 순서대로 앞글자 순서대로 비교를 위해 sort 해줌 ( 예전 문자열 정렬에 배운 지식 )
     for i in range(len(phone_book)-1 ):
         if phone_book[i] == phone_book[i+1][:len(phone_book[i])]:
-            answer = False
+            return False
+    return True
 
-    if answer != False:
-            answer = True
-    return answer
+
+# ### 다른사람 코드
+
+def solution(phoneBook):
+    phoneBook = sorted(phoneBook)
+
+    for p1, p2 in zip(phoneBook, phoneBook[1:]):
+        if p2.startswith(p1):                   # 괄호 안에 적은 문자열로 시작하는 지 확인하는 메소드  
+                                                # p2.startswith(p1 ( 문자열 ) , 시작위치 , 끝나는 위치  )
+            return False
+    return True
