@@ -21,26 +21,37 @@
 # prices의 각 가격은 1 이상 10,000 이하인 자연수입니다.
 # prices의 길이는 2 이상 100,000 이하입니다.
 
-prices = [1, 2, 3, 2, 3]
-
-prices.pop()
-
-for i, v in enumerate( prices ) :
-    print(i, v)
-    if prices[i] - 1 in prices[0+1:]:
-        print('얘보다 작은애가 있네')
-
-prices[5:]
+# ### while 문으로 시도 
 
 # +
-result = [0] * len(prices)
+prices = [1, 2, 3, 2, 3]
+result = []
 idx = 0
 
-for i in range(len( prices ) -1 ) :
-    if prices[idx] < prices[i+1]:
-        result[idx] += 1 
+while True :
+    i = 1
+    cnt = 0
+    print(cnt)
+    print(prices[0] , prices[i])
+        
+    while  prices[0] < prices[i] and i < len(prices) :
+        
+        print(prices[0] , prices[i], i, cnt)
+        i += 1 
+        cnt += 1
+            
+        if i == len(prices) :
+            prices.pop(0)
+            print('prices',prices)
+
+    result.append(cnt)
+    print(result,'-------------')
+    
+    if len(prices) == 0:
+        break
+        
 # -
 
-result
+# ## for 문
 
 
