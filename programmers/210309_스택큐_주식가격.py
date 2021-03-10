@@ -25,4 +25,22 @@ prices = [1, 2, 3, 2, 3]
 
 prices.pop()
 
+for i, v in enumerate( prices ) :
+    print(i, v)
+    if prices[i] - 1 in prices[0+1:]:
+        print('얘보다 작은애가 있네')
+
+prices[5:]
+
+# +
+result = [0] * len(prices)
+idx = 0
+
+for i in range(len( prices ) -1 ) :
+    if prices[idx] < prices[i+1]:
+        result[idx] += 1 
+# -
+
+result
+
 
