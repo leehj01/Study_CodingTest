@@ -52,6 +52,29 @@ while True :
         
 # -
 
-# ## for 문
+# ## 두번째 시도
+
+prices = [1, 2, 3, 2, 3]
+result = []
+idx = 0
+
+
+# +
+prices = [1, 2, 3, 2, 3]
+result =[]
+
+for i in prices:
+    cnt = 0
+    print(i)
+    for j in prices :
+        print(i,j)
+        if i <= j :
+            cnt += 1
+        else :
+            cnt += 0
+    prices.pop(0)
+    result.append(cnt)
+print(result)
+# -
 
 
