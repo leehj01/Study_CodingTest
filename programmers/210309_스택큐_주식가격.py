@@ -72,9 +72,30 @@ for i in prices:
             cnt += 1
         else :
             cnt += 0
+    print(prices)
     prices.pop(0)
     result.append(cnt)
 print(result)
+# +
+prices = [1, 2, 3,2 , 3]
+result =[]
+
+for i, v in enumerate(prices):
+    print('1번', i, v)
+    cnt = 0
+    for j, x in enumerate(prices):
+        print('2번',j, x)
+        
+        if v <= x and i <= j :
+            cnt += 1
+        else :
+            cnt += 0 
+                        
+    print(prices)
+#     prices.pop(0)
+    result.append(cnt)
+print(result)
 # -
+
 
 
