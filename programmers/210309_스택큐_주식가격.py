@@ -54,48 +54,42 @@ while True :
 
 # ## 두번째 시도
 
-prices = [1, 2, 3, 2, 3]
-result = []
-idx = 0
+def solution(prices):
+    answer =[]
 
+    for i, v in enumerate(prices):
+        cnt = -1
+        for j, x in enumerate(prices):
+            if v <= x and i <= j :
+                cnt += 1
+            else :
+                cnt += 0 
+
+        answer.append(cnt)
+    return answer
+
+
+prices = [1, 2, 3, 4, 3]
 
 # +
-prices = [1, 2, 3, 2, 3]
-result =[]
-
-for i in prices:
-    cnt = 0
-    print(i)
-    for j in prices :
-        print(i,j)
-        if i <= j :
-            cnt += 1
-        else :
-            cnt += 0
-    print(prices)
-    prices.pop(0)
-    result.append(cnt)
-print(result)
-# +
-prices = [1, 2, 3,2 , 3]
-result =[]
+prices = [1, 2, 3, 4, 3]
+result =[0] * len(prices)
 
 for i, v in enumerate(prices):
-    print('1번', i, v)
     cnt = 0
-    for j, x in enumerate(prices):
-        print('2번',j, x)
-        
+    for j, x in enumerate(prices[i:]):
+        print(v, 'x', x, 'i', i , )
         if v <= x and i <= j :
-            cnt += 1
+            result[i] += 1
+            
         else :
-            cnt += 0 
-                        
-    print(prices)
-#     prices.pop(0)
-    result.append(cnt)
+            result[i] += 0 
+    
 print(result)
+result
 # -
 
+
+# ## 세번째 시도
 
 
