@@ -21,87 +21,34 @@
 # prices의 각 가격은 1 이상 10,000 이하인 자연수입니다.
 # prices의 길이는 2 이상 100,000 이하입니다.
 
-# ### while 문으로 시도 
-
-# +
-prices = [1, 2, 3, 2, 3]
-result = []
-idx = 0
-
-while True :
-    i = 1
-    cnt = 0
-    print(cnt)
-    print(prices[0] , prices[i])
-        
-    while  prices[0] < prices[i] and i < len(prices) :
-        
-        print(prices[0] , prices[i], i, cnt)
-        i += 1 
-        cnt += 1
-            
-        if i == len(prices) :
-            prices.pop(0)
-            print('prices',prices)
-
-    result.append(cnt)
-    print(result,'-------------')
-    
-    if len(prices) == 0:
-        break
-        
-# -
-
-# ## 두번째 시도
+# ###  for 문을 이용한 코드
 
 def solution(prices):
-    answer =[]
-
-    for i, v in enumerate(prices):
-        cnt = -1
-        for j, x in enumerate(prices):
-            if v <= x and i <= j :
-                cnt += 1
-            else :
-                cnt += 0 
-
-        answer.append(cnt)
-    return answer
+    result =[0] * len(prices)
+    for i in range(len(prices)):
+        for j in range(i, len(prices)):
+            if prices[i] > prices[j] :
+                result[i] = j-i 
+                break
+        if result[i] == 0 :
+            result[i] = len(prices) -1  - i
+    return result
 
 
-[1, 2, 3, 4, 3]
+# ### 스택을 이용한 남의 코드
 
-prices = [5, 8, 6, 2, 4, 1] 
-
-# +
-prices =[1, 2, 3, 2, 3, 3]
-result =[0] * len(prices)
-
-for i, v in enumerate(prices):
-    for j, x in enumerate(prices[i:]):
-        if v <= x :
-            print()
-            result[i] += 1
-            
-        else :
-            break
-            
-# answer = list(map(lambda n, m :  n-1  if m < prices[-1] else n , result, prices))
-# print(answer)
-# answer[-1] = 0
-# answer
-result
-
-# -
-
-
-prices[-1]
-
-r = list(map(lambda a,b: a+b, [1,2,3], [10,20,30]))
-print(r) # [11, 22, 33]
-
-list(map(lambda n, m :  n-1  if m <= prices[-1] else n , result, prices))
-
-# ## 세번째 시도
-
-
+def solution(p):
+    ans = [0] * len(p)
+    stack = [0]
+    for i in range(1, len(p)):
+        if p[i] < p[stack[-1]]:
+            for j in stack[::-1]:
+                if p[i] < p[j]:
+                    ans[j] = i-j
+                    stack.remove(j)
+                else:
+                    break
+        stack.append(i)
+    for i in range(0, len(stack)-1):
+        ans[stack[i]] = len(p) - stack[i] - 1
+    return ans
