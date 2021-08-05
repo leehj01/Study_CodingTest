@@ -18,7 +18,7 @@ def solution(n ,times):
             work += mid // time
 
         if work >= n:
-            right = mid 
+            right = mid
         elif work < n:
             left = mid + 1
 
