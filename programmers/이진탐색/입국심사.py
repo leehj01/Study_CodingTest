@@ -5,20 +5,22 @@
 n = 6
 times = [7,10]
 
-min_time = 1
-max_time = max(times) * n
+def solution(n ,times):
+    answer = 0
+    left = 1
+    right = max(times) * n
 
-answer =0
-while min_time < max_time :
-    medium = (min_time + max_time) // 2
-    work = 0
+    while left < right :
+        mid = (left + right) //2
 
-    for t in times:
-        work += medium // t
+        work = 0
+        for time in times:
+            work += mid // time
 
         if work >= n:
-            max_time = medium
+            right = mid 
         elif work < n:
-            min_time = medium
-answer = min_time
-print(min_time)
+            left = mid + 1
+
+    answer = left
+    return answer
