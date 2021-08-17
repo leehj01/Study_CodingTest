@@ -20,5 +20,6 @@
 |08월19일목| [모든문제_124 나라의 숫자](https://programmers.co.kr/learn/courses/30/lessons/12899) |08월26일| [해시_베스트앨범](https://programmers.co.kr/learn/courses/30/lessons/42579) |
 |09월02일목| [동적계획법_N으로 표현](https://programmers.co.kr/learn/courses/30/lessons/42895) |09월09일| [힙_이중우선순위큐](https://programmers.co.kr/learn/courses/30/lessons/42628) |
 |09월16일목| [모든문제_\[1차\]추석 트래픽](https://programmers.co.kr/learn/courses/30/lessons/17676) |09월23일| [모든문제_튜플](https://programmers.co.kr/learn/courses/30/lessons/64065) |
-|09월30일목| [모든문제_거리두기 확인하기](https://programmers.co.kr/learn/courses/30/lessons/81302) |||
+|09월30일목| [모든문제_거리두기 확인하기](https://programmers.co.kr/learn/courses/30/lessons/81302) |10월07일목|[모든문제_멀쩡한사각형](https://programmers.co.kr/learn/courses/30/lessons/62048)|
+|10월14일목| [모든문제_짝지어 제거하기](https://programmers.co.kr/learn/courses/30/lessons/12973) |10월21일목|[모든문제_예상 대진표](https://programmers.co.kr/learn/courses/30/lessons/12985)|
 </br>
