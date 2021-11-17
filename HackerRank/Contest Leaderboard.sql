@@ -1,4 +1,4 @@
-SELECT sub.hacker_id, hc.name, sum(sub.sc)
+SELECT hc.hacker_id, hc.name, sum(sub.sc) total_score
 FROM (
     SELECT hacker_id, challenge_id, max(score) sc
     FROM Submissions
@@ -6,4 +6,5 @@ FROM (
     ) sub
     LEFT JOIN Hackers hc ON hc.hacker_id = sub.hacker_id 
 GROUP BY sub.hacker_id, hc.name
-ORDER BY sum(sub.sc) desc
+HAVING total_score != 0
+ORDER BY sum(sub.sc) desc, hc.hacker_id
