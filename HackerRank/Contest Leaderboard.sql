@@ -1,10 +1,10 @@
-SELECT hc.hacker_id, hc.name, sum(sub.sc) total_score
+SELECT MIN(CASE WHEN occupation = 'Doctor' THEN Name ELSE NULL END) doctor
+     , MIN(CASE WHEN occupation = 'Professor' THEN Name ELSE NULL END) professor
+    , MIN(CASE WHEN occupation = 'Singer' THEN Name ELSE NULL END) singer
+    , MIN(CASE WHEN occupation = 'Actor' THEN Name ELSE NULL END) actor
 FROM (
-    SELECT hacker_id, challenge_id, max(score) sc
-    FROM Submissions
-    GROUP BY hacker_id, challenge_id
-    ) sub
-    LEFT JOIN Hackers hc ON hc.hacker_id = sub.hacker_id 
-GROUP BY sub.hacker_id, hc.name
-HAVING total_score != 0
-ORDER BY sum(sub.sc) desc, hc.hacker_id
+    SELECT occupation, name
+            , ROW_NUMBER() OVER (PARTITION BY occupation ORDER BY name) rn 
+    FROM Occupations) t
+GROUP BY rn
+ORDER BY rn 
